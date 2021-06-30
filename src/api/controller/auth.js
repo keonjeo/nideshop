@@ -12,6 +12,10 @@ module.exports = class extends Base {
       return this.fail(errno, errmsg);
     }
 
+    console.log("++++++++++++++++++++++++++++==")
+    console.log("userInfo: ", userInfo.nickName)
+    console.log("++++++++++++++++++++++++++++==")
+
     // 根据openid查找用户是否已经注册
     let userId = await this.model('user').where({ weixin_openid: userInfo.openId }).getField('id', true);
     if (think.isEmpty(userId)) {

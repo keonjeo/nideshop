@@ -12,7 +12,17 @@ module.exports = class extends Base {
     const consignee = this.get('consignee') || '';
 
     const model = this.model('order');
-    const data = await model.where({order_sn: ['like', `%${orderSn}%`], consignee: ['like', `%${consignee}%`]}).order(['id DESC']).page(page, size).countSelect();
+
+    let query = this.model('order');
+    if (orderSn != "") {
+      query = query.where({order_sn: ['like', `%${orderSn}%`]})
+    }
+
+    if (consignee != "") {
+      query = query.where({consignee: ['like', `%${consignee}%`]})
+    }
+
+    const data = await query.order(['id DESC']).page(page, size).countSelect();
     const newList = [];
     for (const item of data.data) {
       item.order_status_text = await this.model('order').getOrderStatusText(item.id);

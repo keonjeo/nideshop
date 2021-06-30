@@ -61,6 +61,8 @@ module.exports = class extends think.Service {
         return { errno: 400, errmsg: 'watermark appid 错误', data: null };
       }
 
+      console.log("userInfo: ", userInfo)
+
       // 解析后的数据格式
       // { openId: 'oILjs0JEDIZzaWVc_sJW2k3fhp1k',
       //   nickName: '明天',

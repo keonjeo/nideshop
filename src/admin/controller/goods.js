@@ -10,8 +10,13 @@ module.exports = class extends Base {
     const size = this.get('size') || 10;
     const name = this.get('name') || '';
 
-    const model = this.model('goods');
-    const data = await model.where({name: ['like', `%${name}%`]}).order(['id DESC']).page(page, size).countSelect();
+    let query = this.model('goods');
+
+    if (name != '') {
+      query = query.where({name: ['like', `%${name}%`]})
+    }
+    think.logger.info('');
+    const data = await query.order(['id DESC']).page(page, size).countSelect();
 
     return this.success(data);
   }

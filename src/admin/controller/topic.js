@@ -10,8 +10,12 @@ module.exports = class extends Base {
     const size = this.get('size') || 10;
     const name = this.get('name') || '';
 
-    const model = this.model('topic');
-    const data = await model.where({title: ['like', `%${name}%`]}).order(['id DESC']).page(page, size).countSelect();
+    let query = this.model('topic');
+    if (name != "") {
+      query = query.where({title: ['like', `%${name}%`]})
+    }
+
+    const data = await query.order(['id DESC']).page(page, size).countSelect();
 
     return this.success(data);
   }

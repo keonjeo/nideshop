@@ -97,7 +97,8 @@ CREATE TABLE `nideshop_admin` (
 -- Records of nideshop_admin
 -- ----------------------------
 BEGIN;
-INSERT INTO `nideshop_admin` VALUES (1, 'admin', 'bb87bf23d14b27de74530dec20e234f3', 'ABCDEF', '::ffff:127.0.0.1', 1505484711, 0, 0, '\'\'', 0);
+-- username: admin, password: jiafeimao
+INSERT INTO `nideshop_admin` VALUES (1, 'admin', '6d6ddac4b5c8e67a991b21fbe1390754', 'ABCDEF', '::ffff:127.0.0.1', 1505484711, 0, 0, '\'\'', 0);
 COMMIT;
 
 -- ----------------------------
